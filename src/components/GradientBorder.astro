@@ -1,0 +1,86 @@
+---
+interface Props {
+  class?: string;
+  variant?: 'button' | 'card' | 'section';
+}
+
+const { class: className, variant = 'button' } = Astro.props;
+---
+
+<div class:list={['gradient-border', variant, className]}>
+  <div class="gradient-border-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .gradient-border {
+    position: relative;
+    background-clip: padding-box;
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      #9333EA,
+      #4F46E5 25%,
+      #EC4899 50%,
+      #4F46E5 75%,
+      #9333EA
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    background-size: 200% 200%;
+    animation: shimmer 3s ease infinite;
+  }
+
+  .gradient-border-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Variants */
+  .button {
+    padding: 0;
+  }
+
+  .card {
+    border-radius: 1rem;
+  }
+
+  .section {
+    border-radius: 2rem;
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Hover effects */
+  .gradient-border:hover::before {
+    animation-duration: 3s;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-border::before {
+      animation: none;
+    }
+  }
+</style> 

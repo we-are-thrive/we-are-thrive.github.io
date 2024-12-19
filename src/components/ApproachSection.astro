@@ -1,0 +1,223 @@
+---
+import { Brain, Target, MessageSquare, Zap } from 'lucide-react';
+
+const approaches = [
+  {
+    title: 'Expert-Led Solutions',
+    description: "We're AI experts who love solving real business problems with the latest tech in machine learning, NLP, and computer vision.",
+    Icon: Brain
+  },
+  {
+    title: 'Tailored Strategy',
+    description: 'No one-size-fits-all here. We build AI solutions that match your unique business needs and industry challenges.',
+    Icon: Target
+  },
+  {
+    title: 'Transparent Process',
+    description: "We keep things simple and clear. You'll always know what's happening and have a say in every decision.",
+    Icon: MessageSquare
+  },
+  {
+    title: 'Future-Ready',
+    description: 'We build solutions that grow with you, keeping you ahead of the curve as AI technology evolves.',
+    Icon: Zap
+  }
+];
+---
+
+<section class="approach">
+  <div class="background-grid"></div>
+  <div class="container">
+    <header class="section-header">
+      <h2>Why Partner With Us</h2>
+      <p class="section-intro">We make AI work for your business, plain and simple.</p>
+    </header>
+    
+    <div class="approach-grid">
+      {approaches.map(({ title, description, Icon }, index) => (
+        <div class="approach-card">
+          <div class="card-content">
+            <div class="icon-wrapper">
+              <Icon size={24} strokeWidth={1.5} />
+            </div>
+            <h3>
+              {title}
+            </h3>
+            <p>{description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .approach {
+    padding: var(--section-padding);
+    background: linear-gradient(135deg, #6B46C1, #4C1D95);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .background-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .approach::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 50%),
+               radial-gradient(circle at bottom left, rgba(0,0,0,0.2), transparent 50%);
+    pointer-events: none;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-base);
+    position: relative;
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .section-intro {
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .approach-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    transition: var(--transition-base);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .approach-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .approach-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .icon-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .card-number {
+    display: block;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  p {
+    opacity: 0.9;
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-base);
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  @media (min-width: 1024px) {
+    .approach-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .approach-card {
+      padding: 2rem;
+    }
+
+    .approach-card:nth-child(even) {
+      transform: translateY(2rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .approach-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .approach-card:nth-child(even) {
+      transform: none;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+  }
+</style> 

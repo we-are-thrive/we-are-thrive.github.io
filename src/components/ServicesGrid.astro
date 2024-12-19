@@ -1,55 +1,132 @@
 ---
-import { Brain, Database, Cog, MessageSquare, Eye, Settings } from 'lucide-react';
+import * as LucideReact from 'lucide-react';
+import GradientBorder from './GradientBorder.astro';
+const { Brain, Database, Cog, MessageSquare, Eye, Settings } = LucideReact;
 
 const services = [
   {
     title: 'AI Strategy',
     description: 'Develop a comprehensive AI roadmap tailored to your business goals and industry challenges.',
-    Icon: Brain,
+    longDescription: 'Our AI strategy service helps you identify opportunities, assess readiness, and create a clear implementation roadmap. We analyze your business needs, data infrastructure, and industry landscape to develop a customized AI adoption strategy.',
+    icon: 'strategy',
+    id: 'strategy'
   },
   {
     title: 'Machine Learning',
     description: 'Custom ML solutions that turn your data into actionable insights and predictions.',
-    Icon: Database,
+    longDescription: 'Our machine learning service provides custom ML solutions that turn your data into actionable insights and predictions. We use advanced algorithms and techniques to analyze your data and develop ML models that can help you make better decisions and improve your business outcomes.',
+    icon: 'machine-learning',
+    id: 'machine-learning'
   },
   {
     title: 'Process Automation',
     description: 'Streamline operations with intelligent automation powered by AI.',
-    Icon: Cog,
+    longDescription: 'Our process automation service helps you streamline operations with intelligent automation powered by AI. We use advanced AI technologies to automate your business processes and improve your efficiency and productivity.',
+    icon: 'process-automation',
+    id: 'process-automation'
   },
   {
     title: 'Natural Language',
     description: 'Advanced NLP solutions for chatbots, content analysis, and text processing.',
-    Icon: MessageSquare,
+    longDescription: 'Our natural language service provides advanced NLP solutions for chatbots, content analysis, and text processing. We use natural language processing techniques to analyze and understand text data, and develop NLP models that can help you improve your business outcomes.',
+    icon: 'natural-language',
+    id: 'natural-language'
   },
   {
     title: 'Computer Vision',
     description: 'Image and video analysis solutions for object detection and visual insights.',
-    Icon: Eye,
+    longDescription: 'Our computer vision service provides image and video analysis solutions for object detection and visual insights. We use computer vision techniques to analyze images and videos, and develop computer vision models that can help you improve your business outcomes.',
+    icon: 'computer-vision',
+    id: 'computer-vision'
   },
   {
     title: 'AI Integration',
     description: 'Seamlessly integrate AI capabilities into your existing systems and workflows.',
-    Icon: Settings,
+    longDescription: 'Our AI integration service helps you seamlessly integrate AI capabilities into your existing systems and workflows. We use advanced AI technologies to integrate AI into your systems and workflows, and develop AI integration models that can help you improve your business outcomes.',
+    icon: 'ai-integration',
+    id: 'ai-integration'
   }
 ];
+
+// Map of icon components to use in the template
+const iconComponents = {
+  strategy: Brain,
+  'machine-learning': Database,
+  'process-automation': Cog,
+  'natural-language': MessageSquare,
+  'computer-vision': Eye,
+  'ai-integration': Settings
+};
+
+// Set initial active tab
+const initialActiveTab = 'strategy';
 ---
 
 <section class="services">
   <div class="container">
-    <h2>Our Services</h2>
-    <p class="section-intro">Comprehensive AI solutions to transform your business</p>
+    <header class="section-header">
+      <h2>Our Services</h2>
+    </header>
     
-    <div class="services-grid">
-      {services.map(({ title, description, Icon }) => (
-        <div class="service-card">
-          <div class="icon">
-            <Icon size={32} strokeWidth={1.5} />
+    <div class="services-layout">
+      <div class="tabs-container">
+        <nav class="tabs-nav" role="tablist" aria-orientation="vertical">
+          {services.map(({ title, icon, id, description }) => {
+            const IconComponent = iconComponents[icon];
+            return (
+              <a
+                href={`#${id}`}
+                role="tab"
+                class:list={[
+                  'tab-button',
+                  { active: id === initialActiveTab }
+                ]}
+                id={`tab-${id}`}
+                data-tab={id}
+                aria-selected={id === initialActiveTab}
+                aria-controls={id}
+                onclick="return false;"
+              >
+                <div class="tab-icon">
+                  <IconComponent size={24} strokeWidth={1.5} />
+                </div>
+                <span>{title}</span>
+                <div class="mobile-preview">
+                  <p>{description}</p>
+                  <span class="expand-icon">↓</span>
+                </div>
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+
+      <div class="content-container">
+        {services.map(({ title, description, longDescription, id }) => (
+          <div 
+            class:list={[
+              'content-panel',
+              { active: id === initialActiveTab }
+            ]}
+            role="tabpanel"
+            data-panel={id}
+            id={id}
+            aria-labelledby={`tab-${id}`}
+            style={id === initialActiveTab ? '' : 'display: none;'}
+          >
+            <div class="panel-content">
+              <h3>{title}</h3>
+              <p class="description">{description}</p>
+              <div class="content-details">
+                <p>{longDescription}</p>
+                  <a href={`/services/${id}`} class="explore-link">
+                    Explore {title} <span class="arrow">→</span>
+                  </a>
+              </div>
+            </div>
           </div>
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -57,120 +134,259 @@ const services = [
 <style>
   .services {
     padding: var(--section-padding);
-    background: var(--color-gray);
+    background: var(--color-background);
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-base);
+  .section-header {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
   }
 
   h2 {
-    font-size: var(--font-size-3xl);
-    text-align: center;
-    margin-bottom: 1rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .section-intro {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--color-text);
-    opacity: 0.8;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .service-card {
-    background: var(--color-background);
-    padding: 2rem;
+  .services-layout {
+    display: flex;
+    gap: 0;
+    background: #f8f9fa;
     border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: var(--transition-base);
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .tabs-container {
+    width: 300px;
+    min-width: 280px;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    background: #f1f3f5;
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  .tabs-nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    overflow: hidden;
+    gap: 0.5rem;
   }
 
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(
-      135deg,
-      var(--color-background),
-      rgba(110, 58, 219, 0.05)
-    );
-  }
-
-  .icon {
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    background: rgba(110, 58, 219, 0.1);
+  .tab-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     padding: 1rem;
-    border-radius: 12px;
+    background: transparent;
+    border: none;
+    border-radius: 0.75rem;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #4a5568;
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+  }
+
+  .tab-button.active {
+    background: var(--color-primary);
+    color: white;
+    margin-right: -1rem;
+    padding-right: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .tab-icon {
+    flex-shrink: 0;
+    color: currentColor;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.75rem;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition-base);
+    transition: all 0.2s ease;
   }
 
-  .service-card:hover .icon {
-    background: var(--color-primary);
-    color: white;
+  .tab-button.active .tab-icon {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .content-container {
+    flex: 1;
+    background: var(--color-background);
+    border-radius: 0 1rem 1rem 0;
+    padding: 2rem 2rem 2rem 3rem;
+    min-height: 300px;
+    margin-left: -1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .panel-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   h3 {
-    font-size: var(--font-size-xl);
-    margin-bottom: 1rem;
-    color: var(--color-text);
+    font-size: 1.875rem;
     font-weight: 600;
+    color: var(--color-text);
   }
 
-  p {
-    color: var(--color-text);
+  .description {
+    font-size: 1.25rem;
+    color: #2d3748;
+    font-weight: 500;
+  }
+
+  .content-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     opacity: 0.8;
-    line-height: var(--line-height-relaxed);
+    line-height: 1.6;
+    color: #4a5568;
+  }
+
+  .explore-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5em 1.25em;
+    transition: gap 0.2s ease;
+    background: var(--color-background);
+    border-radius: inherit;
+  }
+
+  .explore-link:hover {
+    gap: 0.75rem;
+    background: var(--color-gray-light);
+  }
+
+  .arrow {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .mobile-preview {
+    display: none;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  .expand-icon {
+    display: none;
+    margin-left: auto;
+    transition: transform 0.3s ease;
   }
 
   @media (max-width: 768px) {
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .services-layout {
+      flex-direction: column;
     }
 
-    .service-card {
-      padding: 1.5rem;
+    .tabs-container {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background: transparent;
+    }
+
+    .tab-button {
+      flex-wrap: wrap;
+      padding: 1rem;
+      background: #f8f9fa;
+      margin-bottom: 0.5rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-preview {
+      display: block;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .expand-icon {
+      display: block;
+    }
+
+    .tab-button.active {
+      margin-right: 0;
+      padding: 1rem;
+      background: var(--color-primary);
+    }
+
+    .tab-button.active .mobile-preview {
+      height: auto;
+      opacity: 1;
+      color: rgba(255, 255, 255, 0.9);
+      border-top-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .tab-button.active .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .content-container {
+      display: none;
     }
   }
+</style>
 
-  @media (prefers-color-scheme: dark) {
-    .service-card {
-      background: rgba(255, 255, 255, 0.02);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+<script>
+  function initializeTabs() {
+    const tabs = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.content-panel');
+    const isMobile = window.innerWidth <= 768;
 
-    .service-card:hover {
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.02),
-        rgba(110, 58, 219, 0.1)
-      );
-    }
-
-    .icon {
-      background: rgba(110, 58, 219, 0.2);
-    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = tab.dataset.tab;
+        
+        if (isMobile) {
+          const wasActive = tab.classList.contains('active');
+          tabs.forEach(t => t.classList.remove('active'));
+          if (!wasActive) {
+            tab.classList.add('active');
+          }
+        } else {
+          tabs.forEach(t => t.classList.remove('active'));
+          panels.forEach(p => {
+            p.classList.remove('active');
+            p.style.display = 'none';
+          });
+          
+          tab.classList.add('active');
+          const activePanel = document.querySelector(`[data-panel="${target}"]`);
+          activePanel.classList.add('active');
+          activePanel.style.display = 'block';
+        }
+      });
+    });
   }
-</style> 
+
+  document.addEventListener('astro:page-load', initializeTabs);
+  initializeTabs();
+
+  window.addEventListener('resize', initializeTabs);
+</script> 

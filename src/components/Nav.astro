@@ -1,4 +1,5 @@
 ---
+import GradientBorder from './GradientBorder.astro';
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -9,30 +10,44 @@ const navItems = [
 ---
 
 <header class="header">
+  <div class="header-backdrop"></div>
   <nav class="nav container">
     <a href="/" class="logo">
       <span class="logo-text">
         <span class="gradient-text">Thrive</span>
         <span class="logo-dot"></span>
       </span>
-      <span class="logo-tagline">AI Solutions</span>
     </a>
 
     <!-- Desktop Navigation -->
     <div class="nav-desktop">
       {navItems.map(({ href, label, style }) => (
-        <a 
-          href={href}
-          class:list={[
-            'nav-link',
-            { 
-              active: Astro.url.pathname === href,
-              'contact-link': style === 'button'
-            }
-          ]}
-        >
-          {label}
-        </a>
+        style === 'button' ? (
+          <GradientBorder>
+            <a 
+              href={href}
+              class:list={[
+                'nav-link',
+                { 
+                  active: Astro.url.pathname === href,
+                  'contact-link': style === 'button'
+                }
+              ]}
+            >
+              {label}
+            </a>
+          </GradientBorder>
+        ) : (
+          <a 
+            href={href}
+            class:list={[
+              'nav-link',
+              { active: Astro.url.pathname === href }
+            ]}
+          >
+            {label}
+          </a>
+        )
       ))}
     </div>
 
@@ -84,6 +99,38 @@ const navItems = [
       document.body.classList.toggle('nav-open');
     });
   }
+
+  // Add scroll detection
+  function updateHeader() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    const scrolled = window.scrollY > 10;
+    header.classList.toggle('scrolled', scrolled);
+  }
+
+  // Initialize and add event listeners
+  updateHeader();
+  window.addEventListener('scroll', updateHeader);
+
+  // Add intersection observer for better performance
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      const header = document.querySelector('.header');
+      if (header) {
+        header.classList.toggle('at-top', entry.isIntersecting);
+      }
+    },
+    { threshold: 1.0 }
+  );
+
+  // Observe a marker at the top of the page
+  const topMarker = document.createElement('div');
+  topMarker.style.height = '1px';
+  topMarker.style.position = 'absolute';
+  topMarker.style.top = '0';
+  document.body.prepend(topMarker);
+  observer.observe(topMarker);
 </script>
 
 <style>
@@ -93,9 +140,25 @@ const navItems = [
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.95);
+    transition: height 0.3s ease;
+    height: 5rem;
+  }
+
+  /* Backdrop that appears on scroll/hover */
+  .header-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Show backdrop on hover or when scrolled */
+  .header:hover .header-backdrop,
+  .header.scrolled .header-backdrop {
+    opacity: 1;
   }
 
   .nav {
@@ -106,6 +169,8 @@ const navItems = [
     padding: 0 var(--spacing-base);
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .logo {
@@ -121,6 +186,7 @@ const navItems = [
     font-size: 1.75rem;
     font-weight: 800;
     letter-spacing: -0.02em;
+    text-transform: uppercase;
   }
 
   .gradient-text {
@@ -155,12 +221,18 @@ const navItems = [
 
   .nav-link {
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-text-light);
     font-weight: 500;
     font-size: 0.9375rem;
-    transition: var(--transition-base);
+    transition: color 0.3s ease;
     position: relative;
     opacity: 0.8;
+  }
+
+  /* Ensure contrast when header has backdrop */
+  .header:hover .nav-link,
+  .header.scrolled .nav-link {
+    color: var(--color-text);
   }
 
   .nav-link:hover {
@@ -268,9 +340,13 @@ const navItems = [
   }
 
   @media (prefers-color-scheme: dark) {
-    .header {
-      background: rgba(17, 17, 17, 0.95);
+    .header-backdrop {
+      background: rgba(17, 17, 17, 0.8);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+      color: var(--color-text-dark);
     }
   }
 
@@ -288,35 +364,35 @@ const navItems = [
 
   .contact-link {
     color: var(--color-primary);
-    border: 1.5px solid var(--color-primary);
     padding: 0.5em 1.25em;
     border-radius: 100px;
     opacity: 1;
-    transition: all var(--transition-base);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    background: var(--color-background);
+    display: inline-block;
   }
 
   .contact-link:hover {
-    background: var(--color-primary);
-    color: white;
     transform: translateY(-1px);
-  }
-
-  @media (max-width: 768px) {
-    .contact-link {
-      text-align: center;
-      margin-top: 0.5rem;
-    }
+    background: var(--color-gray-50);
   }
 
   @media (prefers-color-scheme: dark) {
     .contact-link {
-      border-color: var(--color-accent);
       color: var(--color-accent);
+      background: var(--color-background-dark);
     }
 
     .contact-link:hover {
-      background: var(--color-accent);
       color: var(--color-secondary);
+      background: var(--color-gray-900);
     }
+  }
+
+  /* Add this to your variables.css if not already present */
+  :root {
+    --color-gray-50: #f9fafb;
+    --color-gray-900: #111827;
+    --color-background-dark: rgba(17, 17, 17, 0.95);
   }
 </style> 

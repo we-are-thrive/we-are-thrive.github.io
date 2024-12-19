@@ -16,6 +16,8 @@
   --color-background: #FFFFFF;
   --color-text: #000000;
   --color-gray: #F5F5F5;
+  --color-text-light: #ffffff;
+  --color-text-dark: rgba(255, 255, 255, 0.9);
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
