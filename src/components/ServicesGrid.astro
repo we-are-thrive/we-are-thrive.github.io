@@ -1,0 +1,176 @@
+---
+import { Brain, Database, Cog, MessageSquare, Eye, Settings } from 'lucide-react';
+
+const services = [
+  {
+    title: 'AI Strategy',
+    description: 'Develop a comprehensive AI roadmap tailored to your business goals and industry challenges.',
+    Icon: Brain,
+  },
+  {
+    title: 'Machine Learning',
+    description: 'Custom ML solutions that turn your data into actionable insights and predictions.',
+    Icon: Database,
+  },
+  {
+    title: 'Process Automation',
+    description: 'Streamline operations with intelligent automation powered by AI.',
+    Icon: Cog,
+  },
+  {
+    title: 'Natural Language',
+    description: 'Advanced NLP solutions for chatbots, content analysis, and text processing.',
+    Icon: MessageSquare,
+  },
+  {
+    title: 'Computer Vision',
+    description: 'Image and video analysis solutions for object detection and visual insights.',
+    Icon: Eye,
+  },
+  {
+    title: 'AI Integration',
+    description: 'Seamlessly integrate AI capabilities into your existing systems and workflows.',
+    Icon: Settings,
+  }
+];
+---
+
+<section class="services">
+  <div class="container">
+    <h2>Our Services</h2>
+    <p class="section-intro">Comprehensive AI solutions to transform your business</p>
+    
+    <div class="services-grid">
+      {services.map(({ title, description, Icon }) => (
+        <div class="service-card">
+          <div class="icon">
+            <Icon size={32} strokeWidth={1.5} />
+          </div>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: var(--section-padding);
+    background: var(--color-gray);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-base);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+    text-align: center;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    color: var(--color-text);
+    opacity: 0.8;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: var(--color-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(
+      135deg,
+      var(--color-background),
+      rgba(110, 58, 219, 0.05)
+    );
+  }
+
+  .icon {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    background: rgba(110, 58, 219, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+  }
+
+  .service-card:hover .icon {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--color-text);
+    opacity: 0.8;
+    line-height: var(--line-height-relaxed);
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .service-card {
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(110, 58, 219, 0.1)
+      );
+    }
+
+    .icon {
+      background: rgba(110, 58, 219, 0.2);
+    }
+  }
+</style> 
