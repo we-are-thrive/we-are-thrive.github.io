@@ -1,0 +1,109 @@
+---
+import HeroAnimation from './HeroAnimation';
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Empowering Businesses with the Future of AI</h1>
+    <p>Transform your business with cutting-edge AI solutions that drive growth and innovation.</p>
+    <div class="cta-buttons">
+      <a href="/services" class="btn btn-primary">Explore Services</a>
+      <a href="/contact" class="btn btn-secondary">Contact Us</a>
+    </div>
+  </div>
+  <div class="hero-animation">
+    <HeroAnimation client:load />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: var(--section-padding);
+    background: var(--gradient-primary);
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--color-background);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: var(--line-height-tight);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+  }
+
+  p {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    font-family: var(--font-body);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.8em 1.6em;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-base);
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-background);
+    border: 2px solid var(--color-background);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--section-padding) var(--spacing-base);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style> 

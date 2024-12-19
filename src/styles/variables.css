@@ -1,0 +1,49 @@
+/* Primary Font Option: Syne - Modern, sophisticated, unique */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+
+/* Option 2: Outfit - Clean, contemporary, professional */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+/* Primary Font: Plus Jakarta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Colors */
+  --color-primary: #6E3ADB;
+  --color-secondary: #222222;
+  --color-accent: #5AEF8F;
+  --color-accent-alt: #45E5C4;
+  --color-background: #FFFFFF;
+  --color-text: #000000;
+  --color-gray: #F5F5F5;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+
+  /* Typography */
+  --font-primary: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --line-height-base: 1.5;
+  --line-height-tight: 1.2;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing */
+  --spacing-base: 1rem;
+  --section-padding: clamp(3rem, 8vw, 8rem);
+
+  /* Transitions */
+  --transition-base: 0.3s ease-in-out;
+
+  /* Dark mode overrides */
+  @media (prefers-color-scheme: dark) {
+    --color-background: #111111;
+    --color-text: #FFFFFF;
+    --color-gray: #2A2A2A;
+  }
+} 
