@@ -9,15 +9,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.1.1",
-    "astro": "^5.0.9",
+    "@astrojs/react": "^4.1.2",
+    "@astrojs/tailwind": "^5.1.4",
+    "@react-three/drei": "^9.120.4",
+    "@react-three/fiber": "^8.17.10",
+    "@tailwindcss/typography": "^0.5.15",
+    "astro": "^5.1.2",
+    "framer-motion": "^11.15.0",
     "globe.gl": "^2.34.5",
+    "gsap": "^3.12.5",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.171.0",
+    "three-nebula": "^10.0.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2"
+    "@types/react-dom": "^19.0.2",
+    "playwright": "^1.49.1",
+    "tailwindcss": "^3.4.17"
   }
 }

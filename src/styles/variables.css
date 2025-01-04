@@ -9,13 +9,13 @@
 
 :root {
   /* Colors */
-  --color-primary: #6E3ADB;
-  --color-secondary: #222222;
-  --color-accent: #5AEF8F;
-  --color-accent-alt: #45E5C4;
+  --color-primary: #0378E4;
+  --color-secondary: #00d1f9;
+  --color-accent: #00b3a4;
+  --color-accent-alt: #00b3a4;
   --color-background: #FFFFFF;
   --color-text: #000000;
-  --color-gray: #F5F5F5;
+  --color-gray: #F7F7F7;
   --color-text-light: #ffffff;
   --color-text-dark: rgba(255, 255, 255, 0.9);
 
@@ -41,11 +41,4 @@
 
   /* Transitions */
   --transition-base: 0.3s ease-in-out;
-
-  /* Dark mode overrides */
-  @media (prefers-color-scheme: dark) {
-    --color-background: #111111;
-    --color-text: #FFFFFF;
-    --color-gray: #2A2A2A;
-  }
-} 
+}
