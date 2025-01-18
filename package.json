@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/react": "^4.1.2",
     "@astrojs/tailwind": "^5.1.4",
+    "@lobehub/icons-static-svg": "^1.14.0",
     "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^8.17.10",
     "@tailwindcss/typography": "^0.5.15",
