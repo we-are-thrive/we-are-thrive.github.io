@@ -1,9 +1,90 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ThriveLogo from '/public/logo.svg';
 ---
 
-<Layout 
-  title="Empowering Businesses with AI"
-  description="Thrive helps businesses implement and leverage AI solutions for growth and innovation."
->
+<Layout title="Thrive | AI/ML and LLM Solution Specialists"
+        description="Thrive is an AI/ML and LLM solution specialist company that specializes in providing cutting-edge AI solutions to businesses of all sizes.">
+  <main class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 text-white p-4 relative overflow-hidden">
+    {/* Animated background layers */}
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-radial-animation opacity-30"></div>
+      <div class="absolute inset-0 bg-grid animate-float"></div>
+    </div>
+
+    {/* Content */}
+    <div class="relative z-10 animate-fade-in">
+      <ThriveLogo 
+        class="fill-white/90 w-[clamp(300px,80vw,800px)] h-auto text-white/90 hover:text-white transition-colors duration-300" 
+      />
+    </div>
+  </main>
 </Layout>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px) scale(1);
+    }
+    50% {
+      transform: translateY(-20px) scale(1.05);
+    }
+    100% {
+      transform: translateY(0px) scale(1);
+    }
+  }
+
+  @keyframes gradientSpin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(180deg) scale(1.2);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    }
+  }
+
+  .bg-gradient-radial-animation {
+    background: radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(3, 120, 228, 0.15) 25%,
+      rgba(0, 209, 249, 0.15) 50%,
+      transparent 75%
+    );
+    width: 200%;
+    height: 200%;
+    left: 50%;
+    top: 50%;
+    animation: gradientSpin 15s ease-in-out infinite;
+  }
+
+  .bg-grid {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: -4s;
+    opacity: 0.5;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+</style>
