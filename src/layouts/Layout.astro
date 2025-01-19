@@ -1,11 +1,14 @@
 ---
 import '../styles/base.css';
+import GoogleTagManager from '../components/GoogleTagManager.astro';
 
 interface Props {
 	title: string;
+	description?: string;
 }
 
 const { title, description } = Astro.props;
+const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-T9PWFW5N';
 ---
 
 <!doctype html>
@@ -17,8 +20,10 @@ const { title, description } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<GoogleTagManager gtmId={gtmId} area="head" />
 	</head>
 	<body>
+		<GoogleTagManager gtmId={gtmId} area="body" />
 		<slot />
 	</body>
 </html>

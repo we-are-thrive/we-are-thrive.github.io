@@ -1,0 +1,27 @@
+# Thrive AI
+
+Thrive AI is an AI/ML and LLM solution specialist company that specializes in providing cutting-edge AI solutions to businesses of all sizes.
+
+## Services
+
+- AI readiness assessment
+- AI strategy and roadmap
+- AI implementation and integration
+- AI training and optimization
+- AI governance and compliance
+- AI talent and training
+- AI operations and maintenance
+- AI security and risk management
+- AI cost optimization and ROI analysis
+- AI performance monitoring and analytics
+
+## Service Providers Used
+
+- Anthropic
+- Google
+- OpenAI
+- Hugging Face
+- Cohere
+- Gemini
+- Llama
+- GPT-4
