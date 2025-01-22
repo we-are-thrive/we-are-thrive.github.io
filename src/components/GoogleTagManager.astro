@@ -1,10 +1,11 @@
 ---
 interface Props {
-  gtmId: string;
+  gtmId?: string;
   area: 'head' | 'body';
 }
 
-const { gtmId, area } = Astro.props;
+const { gtmId: gtmIdProp, area } = Astro.props;
+const gtmId = gtmIdProp || import.meta.env.PUBLIC_GTM_ID;
 ---
 
 {area === 'head' && (

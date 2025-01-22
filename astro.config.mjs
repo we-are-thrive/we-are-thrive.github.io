@@ -11,9 +11,7 @@ export default defineConfig({
     tailwind(),
   ],
   experimental: {
-    // Enable new image optimization features
     responsiveImages: true,
-    // Enable new SVG components feature
     svg: true
   }
 });

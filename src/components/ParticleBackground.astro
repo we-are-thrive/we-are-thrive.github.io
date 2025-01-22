@@ -1,0 +1,34 @@
+---
+// No props needed for this basic version
+---
+
+<div class="absolute inset-0 -z-10 overflow-hidden">
+  <div class="relative w-full h-full">
+    <div class="absolute inset-0 bg-gradient-to-br from-background-light via-neutral-light to-background-light dark:from-background-dark dark:via-neutral-dark dark:to-background-dark transition-colors duration-300"></div>
+    <div class="particle-grid absolute inset-0 opacity-20"></div>
+  </div>
+</div>
+
+<style>
+  .particle-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgb(45 52 54 / 0.15) 1px, transparent 0);
+    background-size: 40px 40px;
+    animation: gridFloat 20s linear infinite;
+  }
+
+  :global(.dark) .particle-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgb(233 236 239 / 0.15) 1px, transparent 0);
+  }
+
+  @keyframes gridFloat {
+    0% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-10px) translateX(5px);
+    }
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+  }
+</style> 

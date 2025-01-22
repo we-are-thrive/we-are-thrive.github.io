@@ -1,0 +1,29 @@
+---
+const services = [
+    {
+        name: 'AI/ML Solutions',
+        description: 'We build AI/ML solutions that are fast, secure, and scalable.'
+    },
+    {
+        name: 'LLM Solutions',
+        description: 'We build LLM solutions that are fast, secure, and scalable.'
+    },
+    {
+        name: 'Data Science',
+        description: 'We build data science solutions that are fast, secure, and scalable.'
+    },
+    {
+        name: 'Data Engineering',
+        description: 'We build data engineering solutions that are fast, secure, and scalable.'
+    }
+]
+---
+
+<div class="flex flex-col gap-4">
+    {services.map((service) => (
+        <div class="flex flex-col gap-2">
+            <h3 class="text-2xl font-bold">{service.name}</h3>
+            <p class="text-sm text-gray-500">{service.description}</p>
+        </div>
+    ))}
+</div>

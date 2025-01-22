@@ -1,0 +1,43 @@
+---
+import ParticleBackground from "./ParticleBackground.astro";
+import GradientText from "./GradientText.astro";
+import RainbowBorder from "./ui/RainbowBorder.astro";
+---
+
+<section class="relative min-h-[80vh] flex items-center justify-center text-primaryText-light dark:text-primaryText-dark">
+  <div class="container mx-auto px-4 py-20 relative">
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+        Transform Ideas into
+        <GradientText text="AI-Powered Reality" class="block mt-2" />
+      </h1>
+
+      <p class="text-lg md:text-xl text-neutral-dark dark:text-neutral-light max-w-2xl mx-auto">
+        Building enterprise LLM applications with precision, scale, and ethics.
+        Unlock the full potential of artificial intelligence for your business.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+        <RainbowBorder>
+          <button class="px-8 py-3 rounded-lg font-semibold w-full
+            hover:bg-neutral-light/10 dark:hover:bg-neutral-dark/10 
+            transition-colors duration-300">
+            Get Started
+          </button>
+        </RainbowBorder>
+        
+        <RainbowBorder>
+          <button class="px-8 py-3 rounded-lg font-semibold w-full
+            hover:bg-neutral-light/10 dark:hover:bg-neutral-dark/10 
+            transition-colors duration-300">
+            Learn More
+          </button>
+        </RainbowBorder>
+      </div>
+    </div>
+  </div>
+</section>  
+
+<style>
+    
+</style>

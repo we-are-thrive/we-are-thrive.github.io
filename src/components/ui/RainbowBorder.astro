@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string;
+  padding?: string;
+}
+
+const { 
+  class: className = "",
+  padding = "p-[2px]" // Default padding for border thickness
+} = Astro.props;
+---
+
+<div class:list={["rainbow-border rounded-lg", padding, className]}>
+  <div class="h-full w-full bg-background-light dark:bg-background-dark rounded-[6px]">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .rainbow-border {
+    position: relative;
+    background: linear-gradient(
+      60deg,
+      var(--primary-accent-light),
+      var(--secondary-accent-light),
+      var(--primary-accent-dark),
+      var(--secondary-accent-dark)
+    );
+    background-size: 300% 300%;
+    animation: moveGradient 8s ease infinite;
+  }
+
+  @keyframes moveGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  :global(.dark) .rainbow-border {
+    background: linear-gradient(
+      60deg,
+      var(--primary-accent-dark),
+      var(--secondary-accent-dark),
+      var(--primary-accent-light),
+      var(--secondary-accent-light)
+    );
+    background-size: 300% 300%;
+  }
+</style> 

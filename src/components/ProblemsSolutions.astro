@@ -1,0 +1,29 @@
+---
+const problems = [
+    {
+        name: 'Problem 1',
+        description: 'We solve problem 1.',
+        solution: 'We solve problem 1.'
+    },
+    {
+        name: 'Problem 2',
+        description: 'We solve problem 2.',
+        solution: 'We solve problem 2.'
+    },
+    {
+        name: 'Problem 3',
+        description: 'We solve problem 3.',
+        solution: 'We solve problem 3.'
+    }
+]
+---
+
+<div class="flex flex-col gap-4">
+    {problems.map((problem) => (
+        <div class="flex flex-col gap-2">
+            <h3 class="text-2xl font-bold">{problem.name}</h3>
+            <p class="text-sm text-gray-500">{problem.description}</p>
+            <p class="text-sm text-gray-500">{problem.solution}</p>
+        </div>
+    ))}
+</div>

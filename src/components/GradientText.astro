@@ -1,0 +1,25 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = "" } = Astro.props;
+---
+
+<span class:list={[
+  "bg-clip-text text-transparent transition-colors duration-300",
+  className
+]}>
+  {text}
+</span>
+
+<style>
+  span {
+    background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  }
+
+  :global(.dark) span {
+    background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  }
+</style>
