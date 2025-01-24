@@ -7,21 +7,25 @@ const items = [
         name: 'Services',
         href: '/services',
         sort: 1,
+        visible: false, 
     },
     {
         name: 'Case Studies',
         href: '/case-studies',
         sort: 2,
+        visible: false,
     },
     {
         name: 'Newsroom',
         href: '/newsroom',
         sort: 3,
+        visible: false,
     },
     {
         name: 'About',
         href: '/about',
         sort: 4,
+        visible: false,
     },
 ]
 ---
@@ -34,14 +38,14 @@ const items = [
 
     <!-- Desktop Menu (hidden on mobile) -->
     <div class="hidden md:flex space-x-8">
-        {items.sort((a, b) => a.sort - b.sort).map((item) => (
+        {items.sort((a, b) => a.sort - b.sort).filter(item => item.visible).map((item) => (
             <a href={item.href} class="text-gray-600 dark:text-gray-300 hover:text-cyan-500 transition-colors">
                 {item.name}
             </a>
         ))}
 
         <RainbowBorder>
-            <a href="/contact" class="p-4 rounded-lg">
+            <a href="/contact" class="p-4 rounded-lg hidden">
                 Contact
             </a>
         </RainbowBorder>
@@ -57,14 +61,14 @@ const items = [
 
   <!-- Mobile Menu (hidden by default) -->
   <div class="md:hidden hidden px-4 py-2" id="mobile-menu">
-    {items.sort((a, b) => a.sort - b.sort).map((item) => (
+    {items.sort((a, b) => a.sort - b.sort).filter(item => item.visible).map((item) => (
         <a href={item.href} class="block py-2 text-gray-600 dark:text-gray-300">
             {item.name}
         </a>
     ))}
 
     <RainbowBorder>
-        <a href="/contact" class="p-4 rounded-lg">
+        <a href="/contact" class="p-4 rounded-lg hidden">
             Contact
         </a>
     </RainbowBorder>
