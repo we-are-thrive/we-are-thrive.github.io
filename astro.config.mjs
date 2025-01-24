@@ -18,7 +18,7 @@ export default defineConfig({
   },
   env: {
     schema: {
-      TAG_MANAGER_ID: envField.string({ context: "client", access: "public", optional: true }),
+      TAG_MANAGER_ID: envField.string({ context: "client", access: "public", default: 'GTM-T9PWFW5N', optional: true }),
     }
   }
 });

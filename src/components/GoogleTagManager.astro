@@ -1,6 +1,5 @@
 ---
-import { TAG_MANAGER_ID } from "astro:env"
-import { getSecret } from "astro:env/server";
+import { TAG_MANAGER_ID } from "astro:env/client"
 
 interface Props {
   gtmId?: string;
@@ -8,7 +7,7 @@ interface Props {
 }
 
 const { area } = Astro.props;
-const gtmId = getSecret('TAG_MANAGER_ID');
+const gtmId = TAG_MANAGER_ID;
 ---
 
 {area === 'head' && (
